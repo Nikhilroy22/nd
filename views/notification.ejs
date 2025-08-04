@@ -29,7 +29,8 @@
         });
 
         const result = await res.json();
-        alert("✅ Notification sent successfully!");
+        alert(`✅ Notification sent successfully! $(result)`);
+        console.log(result);
         form.reset(); // ফর্ম ক্লিয়ার
       } catch (err) {
         alert("❌ Error sending notification");
