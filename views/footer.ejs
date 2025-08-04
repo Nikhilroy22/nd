@@ -1,0 +1,25 @@
+<script>
+    function toggleMenu() {
+      const nav = document.getElementById("nav-links");
+      nav.classList.toggle("show");
+    }
+
+    function toggleDropdown(event) {
+      event.preventDefault();
+      document.getElementById("dropdown-menu").classList.toggle("show");
+    }
+
+    // Close dropdown if clicked outside
+    window.addEventListener("click", function(e) {
+      if (!e.target.matches('.dropdown > a')) {
+        const dropdown = document.getElementById("dropdown-menu");
+        if (dropdown.classList.contains("show")) {
+          dropdown.classList.remove("show");
+        }
+      }
+    });
+  </script>
+  <script src="/js/eruda.js"></script>
+<script>eruda.init();</script>
+</body>
+</html>

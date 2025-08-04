@@ -1,0 +1,40 @@
+<%- include('header') %>
+
+<h1>📱 Firebase Notification</h1>
+<form id="notiForm">
+  <input name="username" placeholder="Username" required>
+  <input name="title" placeholder="Title" required>
+  <textarea name="body" placeholder="Message" rows="4" required></textarea>
+  <button type="submit">Send Notification</button>
+</form>
+
+<script>
+    document.getElementById("notiForm").addEventListener("submit", async function(e) {
+      e.preventDefault(); // ⛔️ পেজ রিফ্রেশ বন্ধ করে
+
+      const form = e.target;
+      const data = {
+        username: form.username.value,
+        title: form.title.value,
+        body: form.body.value
+      };
+
+      try {
+        const res = await fetch("/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+        alert("✅ Notification sent successfully!");
+        form.reset(); // ফর্ম ক্লিয়ার
+      } catch (err) {
+        alert("❌ Error sending notification");
+      }
+    });
+  </script>
+
+<%- include('footer') %>
